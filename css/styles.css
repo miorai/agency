@@ -10947,7 +10947,7 @@ header.masthead {
   padding-top: 10.5rem;
   padding-bottom: 6rem;
   text-align: center;
-  color: #fff;
+  color: #0baccc;
   background-image: url("../assets/img/header-bg.png");
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -10975,7 +10975,7 @@ header.masthead .masthead-heading {
     padding-bottom: 12.5rem;
   }
   header.masthead .masthead-subheading {
-    font-size: 2.25rem;
+    font-size: 4.25rem;
     font-style: italic;
     line-height: 2.25rem;
     margin-bottom: 2rem;
