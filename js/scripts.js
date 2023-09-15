@@ -8,28 +8,36 @@
 // 
 
 window.addEventListener('DOMContentLoaded', event => {
-
     // Navbar shrink function
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');
         if (!navbarCollapsible) {
             return;
         }
-        if (window.scrollY === 0) {
-            navbarCollapsible.classList.remove('navbar-shrink')
+        if (window.scrollY > 50) {
+            navbarCollapsible.style.backgroundColor = 'white'; // Aseta taustaväri valkoiseksi
+            // Aseta menu-tekstien väri valkoiseksi
+            const menuTexts = document.querySelectorAll('.navbar-nav .nav-link');
+            menuTexts.forEach(menuText => {
+                menuText.style.color = 'white';
+            });
         } else {
-            navbarCollapsible.classList.add('navbar-shrink')
+            navbarCollapsible.style.backgroundColor = 'transparent'; // Aseta taustaväri läpinäkyväksi
+            // Palauta menu-tekstien alkuperäinen väri
+            const menuTexts = document.querySelectorAll('.navbar-nav .nav-link');
+            menuTexts.forEach(menuText => {
+                menuText.style.color = ''; // Tyhjennä väri, jotta käytetään alkuperäistä väriä
+            });
         }
-
     };
 
-    // Shrink the navbar 
+    // Shrink the navbar
     navbarShrink();
 
     // Shrink the navbar when page is scrolled
     document.addEventListener('scroll', navbarShrink);
 
-    //  Activate Bootstrap scrollspy on the main nav element
+    // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');
     if (mainNav) {
         new bootstrap.ScrollSpy(document.body, {
@@ -38,42 +46,33 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     };
 
-    
-	var contentWayPoint = function() {
-		var i = 0;
-		$('.animate-box').waypoint( function( direction ) {
-
-			if( direction === 'down' && !$(this.element).hasClass('animated-fast') ) {
-				
-				i++;
-
-				$(this.element).addClass('item-animate');
-				setTimeout(function(){
-
-					$('body .animate-box.item-animate').each(function(k){
-						var el = $(this);
-						setTimeout( function () {
-							var effect = el.data('animate-effect');
-							if ( effect === 'fadeIn') {
-								el.addClass('fadeIn animated-fast');
-							} else if ( effect === 'fadeInLeft') {
-								el.addClass('fadeInLeft animated-fast');
-							} else if ( effect === 'fadeInRight') {
-								el.addClass('fadeInRight animated-fast');
-							} else {
-								el.addClass('fadeInUp animated-fast');
-							}
-
-							el.removeClass('item-animate');
-						},  k * 200, 'easeInOutExpo' );
-					});
-					
-				}, 100);
-				
-			}
-
-		} , { offset: '85%' } );
-	};
+    var contentWayPoint = function () {
+        var i = 0;
+        $('.animate-box').waypoint(function (direction) {
+            if (direction === 'down' && !$(this.element).hasClass('animated-fast')) {
+                i++;
+                $(this.element).addClass('item-animate');
+                setTimeout(function () {
+                    $('body .animate-box.item-animate').each(function (k) {
+                        var el = $(this);
+                        setTimeout(function () {
+                            var effect = el.data('animate-effect');
+                            if (effect === 'fadeIn') {
+                                el.addClass('fadeIn animated-fast');
+                            } else if (effect === 'fadeInLeft') {
+                                el.addClass('fadeInLeft animated-fast');
+                            } else if (effect === 'fadeInRight') {
+                                el.addClass('fadeInRight animated-fast');
+                            } else {
+                                el.addClass('fadeInUp animated-fast');
+                            }
+                            el.removeClass('item-animate');
+                        }, k * 200, 'easeInOutExpo');
+                    });
+                }, 100);
+            }
+        }, { offset: '85%' });
+    };
 
     // Collapse responsive navbar when toggler is visible
     const navbarToggler = document.body.querySelector('.navbar-toggler');
