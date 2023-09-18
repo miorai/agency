@@ -4160,6 +4160,11 @@ textarea.form-control-lg {
   color: rgb(63, 121, 247) !important; /* Voit vaihtaa väriä haluamaksesi */
 }
 
+.suuri-kuva {
+  width: 250px; /* Muuta kuvan leveys tarpeen mukaan */
+  height: auto; /* Säilytä alkuperäinen kuvasuhde */
+}
+
 
 .card {
   --bs-card-spacer-y: 1rem;
