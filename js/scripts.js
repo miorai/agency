@@ -8,34 +8,70 @@
 // 
 
 window.addEventListener('DOMContentLoaded', event => {
-
     // Navbar shrink function
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');
         if (!navbarCollapsible) {
             return;
         }
-        if (window.scrollY === 0) {
-            navbarCollapsible.classList.remove('navbar-shrink')
+        if (window.scrollY > 50) {
+            navbarCollapsible.style.backgroundColor = 'white'; // Aseta taustaväri valkoiseksi
+            // Aseta menu-tekstien väri valkoiseksi
+            const menuTexts = document.querySelectorAll('.navbar-nav .nav-link');
+            menuTexts.forEach(menuText => {
+                menuText.style.color = 'white';
+            });
         } else {
-            navbarCollapsible.classList.add('navbar-shrink')
+            navbarCollapsible.style.backgroundColor = 'transparent'; // Aseta taustaväri läpinäkyväksi
+            // Palauta menu-tekstien alkuperäinen väri
+            const menuTexts = document.querySelectorAll('.navbar-nav .nav-link');
+            menuTexts.forEach(menuText => {
+                menuText.style.color = ''; // Tyhjennä väri, jotta käytetään alkuperäistä väriä
+            });
         }
-
     };
 
-    // Shrink the navbar 
+    // Shrink the navbar
     navbarShrink();
 
     // Shrink the navbar when page is scrolled
     document.addEventListener('scroll', navbarShrink);
 
-    //  Activate Bootstrap scrollspy on the main nav element
+    // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');
     if (mainNav) {
         new bootstrap.ScrollSpy(document.body, {
             target: '#mainNav',
             rootMargin: '0px 0px -40%',
         });
+    };
+
+    var contentWayPoint = function () {
+        var i = 0;
+        $('.animate-box').waypoint(function (direction) {
+            if (direction === 'down' && !$(this.element).hasClass('animated-fast')) {
+                i++;
+                $(this.element).addClass('item-animate');
+                setTimeout(function () {
+                    $('body .animate-box.item-animate').each(function (k) {
+                        var el = $(this);
+                        setTimeout(function () {
+                            var effect = el.data('animate-effect');
+                            if (effect === 'fadeIn') {
+                                el.addClass('fadeIn animated-fast');
+                            } else if (effect === 'fadeInLeft') {
+                                el.addClass('fadeInLeft animated-fast');
+                            } else if (effect === 'fadeInRight') {
+                                el.addClass('fadeInRight animated-fast');
+                            } else {
+                                el.addClass('fadeInUp animated-fast');
+                            }
+                            el.removeClass('item-animate');
+                        }, k * 200, 'easeInOutExpo');
+                    });
+                }, 100);
+            }
+        }, { offset: '85%' });
     };
 
     // Collapse responsive navbar when toggler is visible
@@ -52,42 +88,5 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
-
-//Youtube video laatikkoon
-$(document).ready(function() {
-
-    // Gets the video src from the data-src on each button
-    
-    var $videoSrc;  
-    $('.video-btn').click(function() {
-        $videoSrc = $(this).data( "src" );
-    });
-    console.log($videoSrc);
-    
-      
-      
-    // when the modal is opened autoplay it  
-    $('#myModal').on('shown.bs.modal', function (e) {
-        
-    // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
-    $("#video").attr('src',$videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0" ); 
-    })
-      
-    
-    
-    // stop playing the youtube video when I close the modal
-    $('#myModal').on('hide.bs.modal', function (e) {
-        // a poor man's stop video
-        $("#video").attr('src',$videoSrc); 
-    }) 
-        
-        
-    
-    
-      
-      
-    // document ready  
-    });
-    
     
     
