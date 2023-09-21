@@ -11369,6 +11369,10 @@ body {
 p.kommentti_alemmas {
   padding-top: 45px;
 }
+
+p.kommentti_alemmas2 {
+  padding-top: 65px;
+}
 .card {
     width: 100%;
     height: 300px;
