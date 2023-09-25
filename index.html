@@ -52,14 +52,29 @@
         </div>
     </nav>
     <!-- Masthead-->
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-subheading">juu</div>
-            <div class="masthead-heading text-uppercase"></div>
-            <!-- Youtube - videoidene testailua -->
+   <header class="masthead">
             <div class="container">
-                <h1>l</h1>
-
+                <div class="masthead-subheading">DIGIMUUNTAMO</div>
+                <div class="masthead-heading text-uppercase">Koodaa urasi uuteen kasvuun</div>
+                <img src="assets/img/youtube logo.png" class="rounded mx-auto d-block btn" alt="...">
+            </div>
+            <button type="button" class="video-btn" data-bs-toggle="modal" data-bs-target="#videoModal" data-bs-src="https://www.youtube.com/embed/38nYhaEJDho">
+                <img src="assets/img/youtube logo.png" class="img-fluid" alt="DbSchema Video Presentation">
+            </button>
+            <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="dbschemaModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                            <div class="ratio ratio-16x9">
+                                <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary video-btn" data-bs-toggle="modal"
